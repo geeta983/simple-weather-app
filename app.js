@@ -3,7 +3,9 @@ const app = express();
 const port = 3000;
 const https = require("https");
 const bodyparser = require("body-parser");
-const apikey ="f0b243c58aed3160800ce25e294396d0";
+require('dotenv').config();
+const apikey = process.env.API_KEY;
+// "f0b243c58aed3160800ce25e294396d0";
 const units = "metric";
 app.set('view engine','ejs');
 app.use(express.urlencoded({extended:true}));
@@ -33,10 +35,10 @@ app.post("/",function(req,res){
               const weatherdata = JSON.parse(data);
               if(weatherdata.cod === 200)
               {
-                console.log(weatherdata);
+                // console.log(weatherdata);
                 const feelslike = weatherdata.main.feels_like;
                 const temp1 = "The temperature in " +cityname.charAt(0).toUpperCase()+ cityname.slice(1)+" is " +
-                weatherdata.main.temp+" degree celcius feels like "+ feelslike;
+                weatherdata.main.temp+" degree celcius feels like "+ feelslike+" degree celcius.";
                 const description ="The weather is currently "+ weatherdata.weather[0].description;
                 const icon = weatherdata.weather[0].icon;
                 const imageURL ="http://openweathermap.org/img/wn/"+icon+"@2x.png"
