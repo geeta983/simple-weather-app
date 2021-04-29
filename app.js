@@ -5,7 +5,7 @@ const https = require("https");
 const bodyparser = require("body-parser");
 require('dotenv').config();
 const apikey = process.env.API_KEY;
-// "f0b243c58aed3160800ce25e294396d0";
+
 const units = "metric";
 app.set('view engine','ejs');
 app.use(express.urlencoded({extended:true}));
